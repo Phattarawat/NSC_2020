@@ -1,0 +1,56 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:image_picker/image_picker.dart';
+
+class camerapage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _camerapage();
+  }
+}
+
+class _camerapage extends State<camerapage> {
+  var image;
+
+  @override
+  Widget build(BuildContext context) {
+    String argkubkao = ModalRoute.of(context).settings.arguments;
+
+    return Scaffold(
+      body: ListView(
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                argkubkao,
+                style: TextStyle(
+                  fontFamily: 'OCR A',
+                  fontSize: 30,
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(170, 10, 170, 0),
+            child: RaisedButton(
+              child: Text('Open camera'),
+              onPressed: () async {
+                (argkubkao == 'camera')
+                    ? image = await ImagePicker.pickImage(source: ImageSource.camera)
+                    : image = await ImagePicker.pickImage(
+                        source: ImageSource.gallery);
+                setState(() {});
+              },
+            ),
+          ),
+          (image != null)
+              ? Image.file(image)
+              : Container()
+
+        ],
+      ),
+    );
+  }
+}
