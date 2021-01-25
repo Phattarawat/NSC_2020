@@ -1,25 +1,18 @@
-import 'dart:html';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
 
-class decisionpage extends StatefulWidget {
+class DecisionPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _decisionpage();
-  }
+  _DecisionPage createState() => _DecisionPage();
 }
 
-class _decisionpage extends State<decisionpage> {
-
+class _DecisionPage extends State<DecisionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          decoration: BoxDecoration(
+        decoration: BoxDecoration(
           color: const Color(0xffff4242),
         ),
         child: Row(
@@ -33,8 +26,8 @@ class _decisionpage extends State<decisionpage> {
               ),
             ),
           ],
-        )
-      )
+        ),
+      ),
     );
   }
 }

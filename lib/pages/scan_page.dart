@@ -1,23 +1,17 @@
-
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:image_picker/image_picker.dart';
 
-class scanpage extends StatefulWidget {
+class ScanPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _scanpage();
-  }
+  _ScanPage createState() => _ScanPage();
 }
 
-class _scanpage extends State<scanpage> {
+class _ScanPage extends State<ScanPage> {
   File images;
   final picker = ImagePicker();
-
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +27,13 @@ class _scanpage extends State<scanpage> {
               child: (images != null)
                   ? Image.file(images)
                   : Container(
-                width: 955.0,
-                height: 627.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(29.0),
-                  color: const Color(0xffffffff),
-                ),
-              ),
+                      width: 955.0,
+                      height: 627.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(29.0),
+                        color: const Color(0xffffffff),
+                      ),
+                    ),
             ),
             Row(
               children: <Widget>[
@@ -56,8 +50,9 @@ class _scanpage extends State<scanpage> {
                   height: 40.0,
                 ),
                 GestureDetector(
-                  onTap: ()async{
-                    final pickedFile = await picker.getImage(source: ImageSource.camera);
+                  onTap: () async {
+                    final pickedFile =
+                        await picker.getImage(source: ImageSource.camera);
                     setState(() {
                       if (pickedFile != null) {
                         images = File(pickedFile.path);
@@ -84,8 +79,9 @@ class _scanpage extends State<scanpage> {
                   width: 75,
                 ),
                 GestureDetector(
-                  onTap: ()async{
-                    images = await ImagePicker.pickImage(source: ImageSource.camera);
+                  onTap: () async {
+                    images =
+                        await ImagePicker.pickImage(source: ImageSource.camera);
                     setState(() {});
                   },
                   child: Container(
@@ -97,7 +93,7 @@ class _scanpage extends State<scanpage> {
                         fit: BoxFit.cover,
                       ),
                       borderRadius:
-                      BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
                       color: const Color(0xfffdde58),
                       boxShadow: [
                         BoxShadow(

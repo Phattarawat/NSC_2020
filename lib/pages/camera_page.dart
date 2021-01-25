@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
 
-class camerapage extends StatefulWidget {
+class CameraPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _camerapage();
-  }
+  _CameraPage createState() => _CameraPage();
 }
 
-class _camerapage extends State<camerapage> {
+class _CameraPage extends State<CameraPage> {
   var image;
 
   @override
@@ -38,17 +36,15 @@ class _camerapage extends State<camerapage> {
               child: Text('Open camera'),
               onPressed: () async {
                 (argkubkao == 'camera')
-                    ? image = await ImagePicker.pickImage(source: ImageSource.camera)
+                    ? image =
+                        await ImagePicker.pickImage(source: ImageSource.camera)
                     : image = await ImagePicker.pickImage(
                         source: ImageSource.gallery);
                 setState(() {});
               },
             ),
           ),
-          (image != null)
-              ? Image.file(image)
-              : Container()
-
+          (image != null) ? Image.file(image) : Container()
         ],
       ),
     );
