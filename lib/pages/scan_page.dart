@@ -80,9 +80,16 @@ class _ScanPage extends State<ScanPage> {
                 ),
                 GestureDetector(
                   onTap: () async {
-                    images =
-                        await ImagePicker.pickImage(source: ImageSource.camera);
-                    setState(() {});
+                    final pickedFile =
+                      await picker.getImage(source: ImageSource.camera);
+                    setState(() {
+                      if (pickedFile != null) {
+                        images = File(pickedFile.path);
+                        print(images);
+                      } else {
+                        print('No image selected.');
+                      }
+                    });
                   },
                   child: Container(
                     width: 60.0,
