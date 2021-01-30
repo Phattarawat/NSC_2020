@@ -3,6 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:async';
+import 'dart:convert';
+import 'package:sumrabthan_version01/pages/imagetrns.dart';
 
 class ScanPage extends StatefulWidget {
   @override
@@ -11,6 +14,7 @@ class ScanPage extends StatefulWidget {
 
 class _ScanPage extends State<ScanPage> {
   File images;
+  String _img64;
   final picker = ImagePicker();
 
   @override
@@ -85,11 +89,16 @@ class _ScanPage extends State<ScanPage> {
                     setState(() {
                       if (pickedFile != null) {
                         images = File(pickedFile.path);
+                        final byte = images.readAsBytesSync();
+                        _img64 = base64Encode(byte);
                         print(images);
+                        print(_img64);
                       } else {
                         print('No image selected.');
                       }
                     });
+
+
                   },
                   child: Container(
                     width: 60.0,
@@ -112,6 +121,16 @@ class _ScanPage extends State<ScanPage> {
                     ),
                   ),
                 ),
+                RaisedButton(
+                  onPressed: (){
+                    if (_img64 != null) {
+                      NetworkService().postData(_img64);
+                    }
+                  } ,
+                  child: Text(
+                    'Submit'
+                  ),
+                )
               ],
             )
           ],
